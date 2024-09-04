@@ -40,11 +40,10 @@
 
 
 
-### DEPLOY ON CLEVER CLOUD
-
-1. If you don't have an account in Clever Cloud, create one and deploy.
+### DEPLOY ON RENDER
+1. Deploy.
     <br>
-    <a href='https://api.clever-cloud.com/v2/sessions/signup?subscription_source=cta-home-signup' target="_blank"><img alt='DEPLOY' src='https://img.shields.io/badge/-DEPLOY-orange?style=for-the-badge&logo=clever-cloud&logoColor=white'/></a>
+    <a href='https://render.com' target="_blank"><img alt='Render' src='https://img.shields.io/badge/-Deploy-black?style=for-the-badge&logo=render&logoColor=white'/></a>
 
 ### DEPLOY ON HEROKU
 
