@@ -1,15 +1,23 @@
-FROM quay.io/sampandey001/secktor
+FROM node:lts-buster
 
-RUN git clone https://github.com/DeeCeeXxx/Queen_Anita-V2 /root/DeeCeeXxx
+RUN apt-get update && \
+  apt-get install -y \
+  ffmpeg \
+  imagemagick \
+  webp && \
+  apt-get upgrade -y && \
+  npm i pm2 -g && \
+  rm -rf /var/lib/apt/lists/*
+  
+RUN gitclone https://github.com/DeeCeeXxx/Queen_Anita_V2
 
-# Clear npm cache and remove node_modules directories
-RUN npm cache clean --force
-RUN rm -rf /root/DeeCeeXxx/node_modules
 
-# Install dependencies
-WORKDIR /root/DeeCeeXxx
-RUN npm install
+COPY package.json .
+RUN npm install pm2 -g
+RUN npm install --legacy-peer-deps
 
-# Add additional Steps To Run...
+COPY . .
+
 EXPOSE 3000
+
 CMD ["npm","start" ]
