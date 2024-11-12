@@ -204,7 +204,7 @@ const {
     try {
       let _0x2106bc = "*Separate the text with _:_ sign!*\n*Example : " + (prefix + _0x123e7d) + " Asta _:_ Bot*";
       if (!_0x2f534c) {
-        let _0x4a015 = "┌───〈 *ɢꜰx ᴍᴇɴᴜ*  〉───◆\n│╭─────────────···▸\n┴│▸\n⬡│▸ " + gfxx.join(" \n⬡│▸ ") + "\n┬│▸\n│╰────────────···▸▸\n└───────────────···▸\n\n\t *USE: " + (prefix + _0x123e7d) + " Asta:Md*\n_To get All Results with single Cmd!_\n";
+        let _0x4a015 = "┌───〈 *ɢꜰx ᴍᴇɴᴜ*  〉───◆\n│╭─────────────···▸\n┴│▸\n⬡│▸ " + gfxx.join(" \n⬡│▸ ") + "\n┬│▸\n│╰────────────···▸▸\n└───────────────···▸\n\n\t *USE: " + (prefix + _0x123e7d) + " Rias:Gremory*\n_To get All Results with single Cmd!_\n";
         return await _0x1f82ce.sendUi(_0x1f82ce.chat, {
           caption: _0x4a015
         });

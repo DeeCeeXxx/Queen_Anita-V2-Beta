@@ -193,7 +193,7 @@ astro_patch.smd(
   },
   async (message) => {
     var startTime = new Date().getTime();
-    const { key } = await message.reply("*Testing Ping!!!*");
+    const { key } = await message.reply("*Queen_Anita-V2 Ping!!!*");
     var endTime = new Date().getTime();
     return await message.send(
       `*Pong*\n *${endTime - startTime} ms*`,

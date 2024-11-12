@@ -126,7 +126,7 @@ smd({
   pattern: "chat",
   desc: "chat with an AI",
   category: "ai",
-  use: "<Hii, Astropeda>",
+  use: "<Hii, Sir>",
   filename: __filename
 }, async (_0x1c0160, _0x482db1) => {
   try {
@@ -193,7 +193,7 @@ smd({
   alias: ["dall", "dall-e"],
   desc: "chat with an AI",
   category: "ai",
-  use: "<Hii, Astropeda>",
+  use: "<Hii, Sir>",
   filename: __filename
 }, async (_0x21be87, _0x17d498) => {
   try {
