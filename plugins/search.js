@@ -365,7 +365,7 @@ smd({
         },
         async(message, text) => {
           try{
-            if (!text) return message.reply(`*_Uhh please, give me a query_*\n*_Example : ${prefix}google Queen Anita._*`);
+            if (!text) return message.reply(`*_Uhh please, give me a query_*\n*_Example : ${prefix}google RIAS_GREMORY-BOT._*`);
             let google = require('google-it');
             google({ 'query': text}).then(res => {
                 let msg= `Google Search From : ${text} \n\n`;
