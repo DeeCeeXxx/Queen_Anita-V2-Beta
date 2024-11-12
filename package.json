@@ -17,6 +17,7 @@
    "license": "Apache-2.0",
    "dependencies": {
       "@adiwajshing/keyed-db": "^0.2.4",
+      "@distube/ytdl-core": "^4.13.5",
       "@hapi/boom": "^9.1.4",
       "@whiskeysockets/baileys": "6.6.0",
       "acrcloud": "^1.4.0",
@@ -64,7 +65,7 @@
       "wa-sticker-formatter": "^4.3.2",
       "youtubei.js": "^7.0.0",
       "ytdl-core": "^4.11.5",
-      "ytdl-secktor": "^0.0.1-development"
+      "ytdl-core": "github:franceking1/flash-dls"
    },
    "directories": {
       "lib": "lib",
