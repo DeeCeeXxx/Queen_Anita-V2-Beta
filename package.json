@@ -5,13 +5,14 @@
    "main": "index.js",
    "type": "commonjs",
    "scripts": {
+      "preinstall": "rm -rf node_modules package-lock.json",
       "run": "pm2 start . --deep-monitoring --attach --name Queen_Anita_V2 || node .",
       "asta": "pm2 start . --deep-monitoring --attach --name Queen_Anita_V2 || node .",
       "start": "pm2 start . --attach --name Queen_Anita_V2",
       "stop": "pm2 stop Queen_Anita_V2",
-      "heroku-postbuild": "git clone https://github.com/DeeCeeXxx/Queen_Anita_V2 temp && mv temp/.git .git && rm -rf temp && npx puppeteer@latest install  --y",
-      "fis-heroku-postbuild": "git clone https://github.com/DeeCeeXxx/Queen_Anita_V2.git temp1 && rsync -av temp1/* ./ && rsync -av temp1/.* ./ && rm -rf temp1 && npm i && npx puppeteer@latest install",
-      "postinstall": "npx puppeteer@latest install --y"
+      "heroku-postbuild": "git clone https://github.com/DeeCeeXxx/Queen_Anita_V2 temp && mv temp/.git .git && rm -rf temp && npx puppeteer@latest install --y",
+      "fis-heroku-postbuild": "git clone https://github.com/DeeCeeXxx/Queen_Anita_V2.git temp1 && rsync -av temp1/* ./ && rsync -av temp1/.* ./ && rm -rf temp1 && npm install && npx puppeteer@latest install",
+      "postinstall": "rm -rf node_modules && npm install && npx puppeteer@latest install --y"
    },
    "author": "David Cyril",
    "license": "Apache-2.0",
@@ -64,8 +65,7 @@
       "util": "^0.12.4",
       "wa-sticker-formatter": "^4.3.2",
       "youtubei.js": "^7.0.0",
-      "ytdl-core": "^4.11.5",
-      "ytdl-core": "github:franceking1/flash-dls"
+      "ytdl-core": "^4.11.5"
    },
    "directories": {
       "lib": "lib",
