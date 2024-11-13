@@ -9,10 +9,12 @@ RUN apt-get update && \
   npm i pm2 -g && \
   rm -rf /var/lib/apt/lists/*
   
+COPY package.json .
+  
 RUN gitclone https://github.com/DeeCeeXxx/Queen_Anita_V2
 
 
-COPY package.json .
+
 RUN npm install pm2 -g
 RUN npm install --legacy-peer-deps
 
