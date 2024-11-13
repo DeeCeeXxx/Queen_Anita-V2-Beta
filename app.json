@@ -1,15 +1,104 @@
 {
-    "name": "Queen_Anita-V2",
-    "description": "Simple WhatsApp Bot",
-    "logo": "https://i.imgur.com/H4qeXwa.jpeg",
-    "keywords": ["DeeCeeXxx", "Anita-V2", "Queen_Anita"],
-    "success_url": "/",
-    "stack": "container",
-
+  "name": "Queen_Anita_V2",
+  "description": "Multi-device WhatsApp bot by DeeCeeXxx using Docker.",
+  "logo": "https://telegra.ph/file/17c8ba84a7761eed633f6.jpg",
+  "keywords": ["DeeCeeXxx", "WhatsApp Bot", "Docker", "Queen_Anita"],
+  "stack": "container",
+  
+  "env": {
+    "OWNER_NAME": {
+      "description": "Name for Bot Owner",
+      "value": "David Cyril",
+      "required": true
     },
-    "addons": [{ "plan": "heroku-postgresql:basic" }],
-    "buildpacks": [
-      { "url": "https://github.com/heroku/heroku-buildpack-nodejs#latest" },
-      { "url": "https://github.com/carlosdommor/heroku-buildpack-ffmpeg-latest" }
-    ]
+    "WELCOME": {
+      "description": "Enable or disable welcome messages (true/false)",
+      "value": "false",
+      "required": false
+    },
+    "GOODBYE": {
+      "description": "Enable or disable goodbye messages (true/false)",
+      "value": "false",
+      "required": false
+    },
+    "BOT_NAME": {
+      "description": "Name of your bot",
+      "value": "Queen_Anita_V2"
+    },
+    "THUMB_IMAGE": {
+      "description": "URL for the thumbnail image",
+      "value": "https://telegra.ph/file/17c8ba84a7761eed633f6.jpg"
+    },
+    "TZ": {
+      "description": "Timezone (e.g., Africa/Lagos)",
+      "value": "Africa/Lagos"
+    },
+    "HEROKU_API_KEY": {
+      "description": "Heroku API Key for auto-deploy",
+      "value": "",
+      "required": true
+    },
+    "HEROKU_APP_NAME": {
+      "description": "Heroku App Name",
+      "value": "",
+      "required": true
+    },
+    "OWNER_NUMBER": {
+      "description": "Admin phone numbers (comma-separated, without '+')",
+      "value": "2349066528353",
+      "required": true
+    },
+    "SESSION_ID": {
+      "description": "Session ID for the bot",
+      "value": "",
+      "required": true
+    },
+    "MODE": {
+      "description": "Bot mode: public or private",
+      "value": "public",
+      "required": true
+    },
+    "PREFIX": {
+      "description": "Command prefix for the bot",
+      "value": "."
+    },
+    "READ_MESSAGE": {
+      "description": "Auto-read messages (true/false)",
+      "value": "false",
+      "required": false
+    },
+    "AUTO_SAVE_STATUS": {
+      "description": "Auto-save WhatsApp status (true/false)",
+      "value": "false",
+      "required": false
+    },
+    "MSGS_IN_LOG": {
+      "description": "Log messages in console (true/false)",
+      "value": "false",
+      "required": false
+    },
+    "WARN_COUNT": {
+      "description": "Warn count before user is kicked/blocked",
+      "value": "3",
+      "required": false
+    },
+    "WAPRESENCE": {
+      "description": "Bot presence status (available, composing, recording)",
+      "value": "available",
+      "required": false
+    }
+  },
+  
+  "addons": [
+    { "plan": "heroku-postgresql" }
+  ],
+
+  "buildpacks": [],
+  
+  "formation": {
+    "web": {
+      "quantity": 1,
+      "size": "free"
+    }
   }
+}
