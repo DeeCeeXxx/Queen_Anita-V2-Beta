@@ -13,10 +13,7 @@ COPY package.json .
   
 RUN gitclone https://github.com/DeeCeeXxx/Queen_Anita_V2
 
-
-
-RUN npm install pm2 -g
-RUN npm install --legacy-peer-deps
+RUN yarn install 
 
 COPY . .
 
