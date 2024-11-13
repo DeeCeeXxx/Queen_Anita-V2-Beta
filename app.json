@@ -1,13 +1,13 @@
 {
-    "name": "Queen_Anita-V2",
+   "name": "Queen_Anita_V2",
     "description": "Simple WhatsApp Bot",
-    "logo": "https://i.imgur.com/H4qeXwa.jpeg",
+    "logo": "https://telegra.ph/file/17c8ba84a7761eed633f6.jpg",
     "keywords": ["DeeCeeXxx", "Anita-V2", "Queen_Anita"],
-    "success_url": "/",
-    "stack": "container",
-  
-    "env": {
-      "OWNER_NAME": {
+  "success_url": "/",
+  "stack": "container",
+
+  "env": {
+     "OWNER_NAME": {
         "description": "Name for Bot Owner",
         "value": "Queen_Anita-V2",
         "required": true
@@ -122,30 +122,13 @@
         "description": "Put Sticker Author_Name.",
         "value": "A N I T A",
         "required": false
-      }  
-  },
-  
-    "buildpacks": [
-    {
-      "url": "heroku/nodejs"
-    },
-
-    {
-      "url": "https://github.com/jonathanong/heroku-buildpack-ffmpeg-latest"
-    },
-    {
-      "url": "https://github.com/clhuang/heroku-buildpack-webp-binaries.git"
-    }
-  ],
-  "formation": {
-    "worker": {
-      "quantity": 1,
-      "size": "standard-2x"
     }
   },
-  "addons": [
-    {
-      "plan": "heroku-postgresql:essential-0"
-    }
+  "addons": [{ "plan": "heroku-postgresql:essential-0" }],
+  "buildpacks": [
+    { "url": "https://github.com/heroku/heroku-buildpack-nodejs#latest" },
+    { "url": "https://github.com/carlosdommor/heroku-buildpack-ffmpeg-latest" }
   ]
 }
+
+   
