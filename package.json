@@ -4,14 +4,15 @@
    "description": "Multi device whatsapp bot by DeeCeeXxx.",
    "main": "index.js",
    "type": "commonjs",
+   "--engines": {
+      "node": ">=20.0.0"
+   },
    "scripts": {
-      "run": "pm2 start . --deep-monitoring --attach --name Queen_Anita-V2 || node .",
-      "asta": "pm2 start . --deep-monitoring --attach --name Queen_Anita-V2 || node .",
-      "start": "pm2 start . --attach --name Queen_Anita-V2",
-      "stop": "pm2 stop Queen_Anita-V2",
-      "heroku-postbuild": "git clone https://github.com/DeeCeeXxx/Queen_Anita-V2 temp && mv temp/.git .git && rm -rf temp && npx puppeteer@latest install",
-      "fis-heroku-postbuild": "git clone https://github.com/DeeCeeXxx/Queen_Anita-V2.git temp1 && rsync -av temp1/* ./ && rsync -av temp1/.* ./ && rm -rf temp1 && npm i && npx puppeteer@latest install",
-      "postinstall": "npx puppeteer@latest install"
+      "run": "pm2 start . --deep-monitoring --attach --name Anita",
+      "asta": "pm2 start . --deep-monitoring --attach --name Anita",
+      "start": "pm2 start . --attach --name Anita",
+      "stop": "pm2 stop Anita",
+      "dbs--postinstall": "npx puppeteer@latest install --y"
    },
    "author": "David Cyril",
    "license": "Apache-2.0",
