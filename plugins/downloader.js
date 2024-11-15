@@ -1666,34 +1666,120 @@ smd(
      }
    }
  );
- smd({
-   pattern: "play",
-   alias: ["audio","song"],
-   desc: "Downloads audio from youtube.",
-   category: "downloader",
-   filename: __filename,
-   use: "<give text>"
- }, async (_0x2c2023, _0x4ec99f) => {
-   try {
-     if (!_0x4ec99f) {
-       return await _0x2c2023.reply("*_Give Me Search Query_*");
-     }
-     let _0x3b2ca6 = await yts(_0x4ec99f);
-     let _0x4123ae = _0x3b2ca6.all[0];
-     let _0x5883a9 = "\t *QUEEN_ANITA-V2 • SONG DOWNLOADER*   \n\n*Title :* " + _0x4123ae.title + "\nUrl : " + _0x4123ae.url + "\n*Description :* " + _0x4123ae.timestamp + "\n*Views :* " + _0x4123ae.views + "\n*Uploaded :* " + _0x4123ae.ago + "\n*Author :* " + _0x4123ae.author.name + "\n\n\n_Reply 1 To Video_ Or _1 document_\n_Reply 2 To Audio_ Or _2 document_";
-     let _0x3885cc = await smdBuffer(_0x4123ae.thumbnail);
-     var _0x44a363 = {
-       ...(await _0x2c2023.bot.contextInfo(Config.botname, "ʏᴏᴜᴛᴜʙᴇ ꜱᴏɴɢ", _0x3885cc))
-     };
-     await _0x2c2023.bot.sendMessage(_0x2c2023.jid, {
-       image: _0x3885cc,
-       caption: _0x5883a9,
-       contextInfo: _0x44a363
-     });
-   } catch (_0x86b411) {
-     return _0x2c2023.error(_0x86b411 + "\n\ncommand: mediafire", _0x86b411, "*_File not found!!_*");
-   }
- });
+smd({
+  pattern: "play",
+  alias: ["audio", "song"],
+  desc: "Downloads audio from YouTube.",
+  category: "downloader",
+  filename: __filename,
+  use: "<provide text>"
+}, async (context, query) => {
+  try {
+    // Check if the user has provided a search query
+    if (!query) {
+      await context.reply("*Please provide a search query!*");
+      return;
+    }
+
+    // Perform YouTube search using the query
+    const searchResults = await yts(query);
+    const videoInfo = searchResults.all[0];
+
+    if (!videoInfo) {
+      await context.reply("*No results found. Please try another query!*");
+      return;
+    }
+
+    // Construct the response message
+    const message = `
+  *🎵 QUEEN_ANITA-V2 • SONG DOWNLOADER 🎵*\n
+*Title:* ${videoInfo.title}
+*URL:* ${videoInfo.url}
+*Duration:* ${videoInfo.timestamp}
+*Views:* ${videoInfo.views}
+*Uploaded:* ${videoInfo.ago}
+*Author:* ${videoInfo.author.name}
+
+_Reply with "1" for Video or "1 document"_
+_Reply with "2" for Audio or "2 document"_
+`;
+
+    // Fetch the thumbnail buffer
+    const thumbnailBuffer = await smdBuffer(videoInfo.thumbnail);
+
+    // Context info for interactive message
+    const contextInfo = {
+      ...(await context.bot.contextInfo(Config.botname, "YouTube Song Downloader", thumbnailBuffer))
+    };
+
+    // Send the search result with the thumbnail image
+    await context.bot.sendMessage(context.jid, {
+      image: thumbnailBuffer,
+      caption: message,
+      contextInfo
+    });
+
+    // Listen for user's reply to handle video or audio download
+    context.replyListener(async (replyContext) => {
+      const replyText = replyContext.body.trim();
+
+      // Define the response for audio or video
+      let downloadType = "";
+      let apiUrl = "";
+
+      // Determine user's reply for audio or video
+      if (replyText === "1" || replyText.toLowerCase() === "video" || replyText === "1 document") {
+        downloadType = "Video";
+        apiUrl = `https://api-lenwy.vercel.app/mp4?url=${encodeURIComponent(videoInfo.url)}`;
+      } else if (replyText === "2" || replyText.toLowerCase() === "audio" || replyText === "2 document") {
+        downloadType = "Audio";
+        apiUrl = `https://api-lenwy.vercel.app/mp3?url=${encodeURIComponent(videoInfo.url)}`;
+      } else {
+        await context.reply("*Invalid option. Please reply with '1' or '2'.*");
+        return;
+      }
+
+      // Inform the user of the processing
+      await context.reply(`*Processing your ${downloadType} request... Please wait!*`);
+
+      try {
+        // Fetch the download URL from the API
+        const response = await (await fetch(apiUrl)).json();
+
+        // Check if the download URL is available
+        if (response.status === 200 && response.data.download_url !== "Converting") {
+          const downloadUrl = response.data.download_url;
+          const fileTitle = response.data.title || videoInfo.title;
+          const fileMessage = `*Downloaded:* ${fileTitle}\n> ᴘᴏᴡᴇʀᴇᴅ ʙʏ ᴅᴀᴠɪᴅ ᴄʏʀɪʟ ᴛᴇᴄʜ™`;
+
+          // Send the audio or video file
+          if (downloadType === "Video") {
+            await context.bot.sendMessage(context.jid, {
+              video: { url: downloadUrl },
+              caption: fileMessage
+            });
+          } else {
+            await context.bot.sendMessage(context.jid, {
+              audio: { url: downloadUrl },
+              mimetype: 'audio/mp4',
+              caption: fileMessage
+            });
+          }
+
+        } else {
+          await context.reply("*Conversion in progress. Please wait a moment and try again.*");
+        }
+      } catch (downloadError) {
+        await context.reply("*An error occurred while fetching the file. Please try again later.*");
+      }
+    });
+
+  } catch (error) {
+    // Error handling
+    await context.error(`Error: ${error.message}\nCommand: play`, error, "*_File not found!!_*");
+  }
+});
+
  cmd({
    pattern: "yts",
    alias: ["yt", "ytsearch"],
